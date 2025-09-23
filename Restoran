@@ -1,3 +1,15 @@
 // sistem restoran
-asdfas
 #include <stdio.h>
+
+int main(){
+    char nama[50];
+    int berapaOrang;
+
+    printf("Selamat Datang di Restoran\n");
+    printf("Nama         : ");
+    scanf("%s", nama);
+    printf("Berapa Orang : ");
+    scanf("%d", &berapaOrang);
+    
+    return 0;
+}
