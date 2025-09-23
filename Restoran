@@ -11,5 +11,14 @@ int main(){
     printf("Berapa Orang : ");
     scanf("%d", &berapaOrang);
     
+    int pilihMenu;
+    printf("Display Menu\n");
+    printf("1. Appetizer\n");
+    printf("2. Main Course\n");
+    printf("3. Beverages\n");
+    printf("4. Dessert\n");
+    printf("Choose : ");
+    scanf("%d", &pilihMenu);
+    
     return 0;
 }
