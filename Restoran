@@ -19,6 +19,52 @@ int main(){
     printf("4. Dessert\n");
     printf("Choose : ");
     scanf("%d", &pilihMenu);
+
+    switch (pilihMenu){
+        case 1:
+
+            printf("==APPETIZER==\n");
+            printf ("1. Garlic Cheese Bread\n");
+            printf ("2. French Fries\n");
+            printf ("3. Chicken Wings(4/6/8)\n");
+            printf ("4. Oyster (4)\n");
+            printf ("5. Salad\n");
+            break;
+        
+        case 2:
+            printf("==Main Course==\n");
+            printf("1. Nasi Goreng\n");
+            printf("1. Salted Egg Chicken\n");
+            printf("1. Spaghetti Carbonara\n");
+            printf("1. \n");
+            printf("1. Nasi Goreng\n");
+            break;
+        case 3:
+            printf("==Beverages==\n");
+            printf("1. Avochoco\n");
+            printf("2. Lychee Tea\n");
+            printf("3. Lemon Cocktail\n");
+            printf("4. Biscoff Espresso\n");
+            printf("5. Chocolate\n");
+            break;
+        case 4:
+            printf("==Dessert==");
+            printf("1. Burnt Cheesecake\n");
+            printf("2. Chocolava\n");
+            printf("3. Strawberry Cake\n");
+            printf("4. Pancake Lotus Ice Cream\n");
+            printf("5. Trio Ice Cream\n");
+        default:
+            printf("--Undefined--\n");
+    }
+
+    int pesan;
+    printf("Choose :");
+    scanf("%d", &pesan);
+
+
+    
+    
     
     return 0;
 }
