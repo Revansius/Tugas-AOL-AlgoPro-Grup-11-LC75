@@ -1,15 +1,33 @@
 // sistem restoran
 #include <stdio.h>
 
-int main(){
-    char nama[50];
-    int berapaOrang;
+void clear_stdin(){
+    int c;
+    while ((c == getchar()) != '\n' && c != EOF){
 
-    printf("Selamat Datang di Restoran\n");
-    printf("Nama         : ");
-    scanf("%s", nama);
-    printf("Berapa Orang : ");
-    scanf("%d", &berapaOrang);
+	}
+}
+
+Void meja(int *invalid, int *ok){
+
+
+
+void Display(){
+	int Nama, people;
+	printf("==========================================\n");
+	printf("	Selamat Datang di Trouville		\n");
+	printf("==========================================\n");
+	printf("Nama:	", Nama);
+	scanf("%s", &Nama);
+    printf("Email:    ", email);
+    scanf("%d", &email);
+	printf("No Meja:    ", Meja);
+    scanf("%d", &Meja);
+	
+	
+}
+int main(){
+   
     
     int pilihMenu;
     printf("Display Menu\n");
