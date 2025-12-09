@@ -21,6 +21,37 @@ struct dessert{
 	int stock;
 };
 
+void appetizer(){
+	//Data Harga,Stock,dan No utk menu appetizer
+    struct appetizer GCB;
+    struct appetizer FF;
+    struct appetizer CW;
+    struct appetizer O;
+    struct appetizer S;
+    //Garlic Chesse Bread
+    GCB.harga = 20000;
+    GCB.stock = 30;
+    //FrenchFries
+    FF.harga = 20000;
+    FF.stock = 30;
+    //ChickenWings
+    CW.harga = 27000;
+    CW.stock = 30;
+    //Oyster
+    O.harga = 35000;
+    O.stock = 30;
+    //Salad
+    S.harga = 15000;
+    S.stock = 30;
+	
+	printf("==APPETIZER==\n");
+            printf ("1. Garlic Cheese Bread | Rp%.2f | %d\n", GCB.harga, GCB.stock);
+            printf ("2. French Fries | Rp%.2f | %d\n", FF.harga, FF.stock);
+            printf ("3. Chicken Wings | Rp%.2f | %d\n", CW.harga, CW.stock);
+            printf ("4. Oyster | Rp%.2f | %d\n", O.harga, O.stock);
+            printf ("5. Salad | Rp%.2f | %d\n", S.harga, S.stock);
+}
+
 void clear_stdin(){
     int c;
     while ((c == getchar()) != '\n' && c != EOF){
@@ -65,13 +96,7 @@ int main(){
 
     switch (pilihMenu){
         case 1:
-
-            printf("==APPETIZER==\n");
-            printf ("1. Garlic Cheese Bread\n");
-            printf ("2. French Fries\n");
-            printf ("3. Chicken Wings(4/6/8)\n");
-            printf ("4. Oyster (4)\n");
-            printf ("5. Salad\n");
+			appetizer();
             break;
         
         case 2:
