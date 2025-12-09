@@ -45,21 +45,32 @@ void appetizer(){
     S.stock = 30;
 	
 	printf("==APPETIZER==\n");
-            printf ("1. Garlic Cheese Bread | Rp%.2f | %d\n", GCB.harga, GCB.stock);
-            printf ("2. French Fries | Rp%.2f | %d\n", FF.harga, FF.stock);
-            printf ("3. Chicken Wings | Rp%.2f | %d\n", CW.harga, CW.stock);
-            printf ("4. Oyster | Rp%.2f | %d\n", O.harga, O.stock);
-            printf ("5. Salad | Rp%.2f | %d\n", S.harga, S.stock);
+    printf ("1. Garlic Cheese Bread | Rp%.2f | %d\n", GCB.harga, GCB.stock);
+    printf ("2. French Fries | Rp%.2f | %d\n", FF.harga, FF.stock);
+    printf ("3. Chicken Wings | Rp%.2f | %d\n", CW.harga, CW.stock);
+    printf ("4. Oyster | Rp%.2f | %d\n", O.harga, O.stock);
+    printf ("5. Salad | Rp%.2f | %d\n", S.harga, S.stock);
 }
 
 void mainCourse(){
 	printf("==Main Course==\n");
-            printf("1. Nasi Goreng\n");
-            printf("1. Salted Egg Chicken\n");
-            printf("1. Spaghetti Carbonara\n");
-            printf("1. \n");
-            printf("1. Nasi Goreng\n");
+    printf("1. Nasi Goreng\n");
+    printf("1. Salted Egg Chicken\n");
+    printf("1. Spaghetti Carbonara\n");
+    printf("1. \n");
+    printf("1. Nasi Goreng\n");
 }
+
+void beverages(){
+	printf("==Beverages==\n");
+    printf("1. Avochoco\n");
+    printf("2. Lychee Tea\n");
+    printf("3. Lemon Cocktail\n");
+    printf("4. Biscoff Espresso\n");
+    printf("5. Chocolate\n");
+}
+
+
 
 void clear_stdin(){
     int c;
@@ -107,17 +118,11 @@ int main(){
         case 1:
 			appetizer();
             break;
-        
         case 2:
             mainCourse();
             break;
         case 3:
-            printf("==Beverages==\n");
-            printf("1. Avochoco\n");
-            printf("2. Lychee Tea\n");
-            printf("3. Lemon Cocktail\n");
-            printf("4. Biscoff Espresso\n");
-            printf("5. Chocolate\n");
+           beverages();
             break;
         case 4:
             printf("==Dessert==");
