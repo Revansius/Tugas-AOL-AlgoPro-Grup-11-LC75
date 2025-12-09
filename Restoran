@@ -70,7 +70,14 @@ void beverages(){
     printf("5. Chocolate\n");
 }
 
-
+void dessert(){
+	printf("==Dessert==");
+    printf("1. Burnt Cheesecake\n");
+    printf("2. Chocolava\n");
+    printf("3. Strawberry Cake\n");
+    printf("4. Pancake Lotus Ice Cream\n");
+    printf("5. Trio Ice Cream\n");
+}
 
 void clear_stdin(){
     int c;
@@ -123,14 +130,10 @@ int main(){
             break;
         case 3:
            beverages();
-            break;
+        	break;
         case 4:
-            printf("==Dessert==");
-            printf("1. Burnt Cheesecake\n");
-            printf("2. Chocolava\n");
-            printf("3. Strawberry Cake\n");
-            printf("4. Pancake Lotus Ice Cream\n");
-            printf("5. Trio Ice Cream\n");
+            dessert();
+            break;
         default:
             printf("--Undefined--\n");
     }
