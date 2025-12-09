@@ -52,6 +52,15 @@ void appetizer(){
             printf ("5. Salad | Rp%.2f | %d\n", S.harga, S.stock);
 }
 
+void mainCourse(){
+	printf("==Main Course==\n");
+            printf("1. Nasi Goreng\n");
+            printf("1. Salted Egg Chicken\n");
+            printf("1. Spaghetti Carbonara\n");
+            printf("1. \n");
+            printf("1. Nasi Goreng\n");
+}
+
 void clear_stdin(){
     int c;
     while ((c == getchar()) != '\n' && c != EOF){
@@ -100,12 +109,7 @@ int main(){
             break;
         
         case 2:
-            printf("==Main Course==\n");
-            printf("1. Nasi Goreng\n");
-            printf("1. Salted Egg Chicken\n");
-            printf("1. Spaghetti Carbonara\n");
-            printf("1. \n");
-            printf("1. Nasi Goreng\n");
+            mainCourse();
             break;
         case 3:
             printf("==Beverages==\n");
