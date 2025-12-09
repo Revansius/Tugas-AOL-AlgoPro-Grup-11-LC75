@@ -1,6 +1,26 @@
 // sistem restoran
 #include <stdio.h>
 
+struct appetizer{
+	float harga;
+	int stock;
+};
+
+struct mainCourse{
+	float harga;
+	int stock;
+};
+
+struct beverages{
+	float harga;
+	int stock;
+};
+
+struct dessert{
+	float harga;
+	int stock;
+};
+
 void clear_stdin(){
     int c;
     while ((c == getchar()) != '\n' && c != EOF){
