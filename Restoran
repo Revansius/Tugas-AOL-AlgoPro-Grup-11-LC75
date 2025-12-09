@@ -9,7 +9,16 @@ void clear_stdin(){
 }
 
 Void meja(int *invalid, int *ok){
+}
 
+void Menu(){
+	printf("Silahkan Pilih Jenis Menu yang Anda Ingin Pesan\n");
+    printf("1. Appetizer\n");
+    printf("2. Main Course\n");
+    printf("3. Beverages\n");
+    printf("4. Dessert\n");
+    printf("Choose : ");
+}
 
 
 void Display(){
@@ -30,11 +39,7 @@ int main(){
    
     
     int pilihMenu;
-    printf("Display Menu\n");
-    printf("1. Appetizer\n");
-    printf("2. Main Course\n");
-    printf("3. Beverages\n");
-    printf("4. Dessert\n");
+    Menu();
     printf("Choose : ");
     scanf("%d", &pilihMenu);
 
