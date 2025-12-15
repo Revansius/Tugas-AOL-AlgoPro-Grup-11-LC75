@@ -1,6 +1,6 @@
 // sistem restoran
 #include <stdio.h>
-
+// STRUCT
 struct appetizer{
 	float harga;
 	int stock;
