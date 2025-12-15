@@ -1,5 +1,6 @@
 // sistem restoran
 #include <stdio.h>
+
 // STRUCT
 struct appetizer{
 	float harga;
@@ -35,7 +36,7 @@ struct Menu dessert[5] = {
     {"Trio Ice Cream", 30000, 10}
 };
 
-
+// FUCNTION
 void tampilMenu(struct Menu menu[], int jumlah, char judul[]) {
     printf("\n== %s ==\n", judul);
     printf("-------------------------------------------------------------\n");
@@ -128,6 +129,8 @@ void Display() {
 
     printf("==========================================\n");
 }
+
+// MAIN
 int main(){
    
     
