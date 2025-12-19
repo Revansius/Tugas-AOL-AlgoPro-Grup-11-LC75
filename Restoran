@@ -2,14 +2,17 @@
 #include <stdio.h>
 
 // STRUCT
-struct appetizer{
-	float harga;
-	int stock;
-};
 struct Menu {
     char nama[30];
     int harga;
     int stok;
+};
+struct Menu appetizer[5] = {
+    {"Garlic Cheese Bread", 20000, 30},
+    {"French Fries", 20000, 30},
+    {"Chicken Wing", 27000, 30},
+    {"Oyster", 35000, 30},
+    {"Salad", 15000, 30}
 };
 
 struct Menu mainCourse[5] = {
@@ -54,38 +57,6 @@ void tampilMenu(struct Menu menu[], int jumlah, char judul[]) {
 }
 
 
-void appetizer(){
-	//Data Harga,Stock,dan No utk menu appetizer
-    struct appetizer GCB;
-    struct appetizer FF;
-    struct appetizer CW;
-    struct appetizer O;
-    struct appetizer S;
-    //Garlic Chesse Bread
-    GCB.harga = 20000;
-    GCB.stock = 30;
-    //FrenchFries
-    FF.harga = 20000;
-    FF.stock = 30;
-    //ChickenWings
-    CW.harga = 27000;
-    CW.stock = 30;
-    //Oyster
-    O.harga = 35000;
-    O.stock = 30;
-    //Salad
-    S.harga = 15000;
-    S.stock = 30;
-	
-	printf("==APPETIZER==\n");
-    printf ("1. Garlic Cheese Bread | Rp%.2f | %d\n", GCB.harga, GCB.stock);
-    printf ("2. French Fries | Rp%.2f | %d\n", FF.harga, FF.stock);
-    printf ("3. Chicken Wings | Rp%.2f | %d\n", CW.harga, CW.stock);
-    printf ("4. Oyster | Rp%.2f | %d\n", O.harga, O.stock);
-    printf ("5. Salad | Rp%.2f | %d\n", S.harga, S.stock);
-}
-
-
 void clear_stdin(){
     int c;
     while ((c == getchar()) != '\n' && c != EOF){
@@ -102,7 +73,7 @@ void MenuUtama(){
     printf("2. Main Course\n");
     printf("3. Beverages\n");
     printf("4. Dessert\n");
-    printf("5. Exit\n");
+    printf("5. Bayar\n");
     printf("Choose : ");
 }
 
@@ -130,6 +101,46 @@ void Display() {
     printf("==========================================\n");
 }
 
+void orderMenu(struct Menu menu[], int jumlah){
+    int pilih, quantity[];
+    printf("Masukkan No. pesanan: \n");
+    scanf("%d", &pilih);
+    
+    if(pilih < 1 || pilih > jumlah){
+        printf("Pilihan Tidak Valid!\n");
+        return;
+    }
+
+    int idx = pilih - 1;
+
+    printf("Jumlah yang pesanan %s: \n", menu[idx].nama);
+    scanf("%d", &quantity);
+
+    if(quantity <= 0){
+        printf("Jumlah pesanan harus lebih dari 0\n");
+        return;
+    }
+    if(menu[idx].stok >= quantity){
+        menu[idx].stok -= quantity;
+        printf("Pesanan anda berhasil\n");
+    }else printf("Mohon maaf stok menu yang anda pilih sudah habis\n");
+
+
+}
+
+void bayar(struct Menu){
+    printf("==========================================\n");
+    printf("                   Payment\n")
+    printf("==========================================\n");
+    for (int i = 0; i < ; i++) {
+        printf("%-4d | %-25s | %-11d | %-5d\n",
+               i + 1,
+               menu[i].nama,
+               menu[i].harga,
+               quantity);
+    }
+}
+
 // MAIN
 int main(){
    
@@ -143,28 +154,31 @@ int main(){
 
         switch(pilihMenu){
             case 1: 
-                appetizer();
+                tampilMenu(appetizer, 5, "APPETIZER");
+                orderMenu(appetizer, 5);
                 break;
             case 2:
                 tampilMenu(mainCourse, 5, "MAIN COURSE");
+                orderMenu(mainCourse, 5);
                 break;
             case 3:
                 tampilMenu(beverages, 5, "BEVERAGES");
+                orderMenu(beverages, 5);
                 break;
             case 4:
                 tampilMenu(dessert, 5, "DESSERT");
+                orderMenu(dessert, 5);
                 break;
             case 5:
-                printf("Terim Kasih!\n");
+
+                break;
             default:
                 printf("Pilihan tidak valid!\n");
+
 
         }
     }while (pilihMenu != 5);
 
-    int pesan;
-    printf("Choose :");
-    scanf("%d", &pesan);
 
 
     
