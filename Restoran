@@ -1,42 +1,56 @@
 // sistem restoran
 #include <stdio.h>
+#include <string.h>
 
 // STRUCT
 struct Menu {
+    int id;
     char nama[30];
     int harga;
     int stok;
 };
+
+struct KeranjangItem {
+    char nama[39];
+    int quantity;
+    int subtotal;
+};
+
+struct KeranjangItem keranjang [50];
+int keranjangCount = 0;
+int totalPembayaran1 = 0;
+
+
 struct Menu appetizer[5] = {
-    {"Garlic Cheese Bread", 20000, 30},
-    {"French Fries", 20000, 30},
-    {"Chicken Wing", 27000, 30},
-    {"Oyster", 35000, 30},
-    {"Salad", 15000, 30}
+    {1, "Garlic Cheese Bread", 20000, 30},
+    {2, "French Fries", 20000, 30},
+    {3, "Chicken Wing", 27000, 30},
+    {4, "Oyster", 35000, 30},
+    {5, "Salad", 15000, 30}
 };
 
 struct Menu mainCourse[5] = {
-    {"Nasi Goreng", 50000, 10},
-    {"Salted Egg Chicken", 65000, 10},
-    {"Spaghetti Carbonara", 70000, 10},
-    {"Beef Steak", 105000, 10},
-    {"Chicken Katsu Curry", 80000, 10}
+    {1, "Nasi Goreng", 50000, 10},
+    {2, "Salted Egg Chicken", 65000, 10},
+    {3, "Spaghetti Carbonara", 70000, 10},
+    {4, "Beef Steak", 105000, 10},
+    {5, "Chicken Katsu Curry", 80000, 10}
 };
 
 struct Menu beverages[5] = {
-    {"Avochoco", 35000, 10},
-    {"Lychee Tea", 25000, 10},
-    {"Lemon Cocktail", 50000, 10},
-    {"Biscoff Espresso", 45000, 10},
-    {"Chocolate", 30000, 10}
+    {1, "Avochoco", 35000, 10},
+    {2, "Lychee Tea", 25000, 10},
+    {3, "Lemon Cocktail", 50000, 10},
+    {4, "Biscoff Espresso", 45000, 10},
+    {5, "Chocolate", 30000, 10}
 };
 
 struct Menu dessert[5] = {
-    {"Burnt Cheesecake", 35000, 10},
-    {"Choco Lava", 25000, 10},
-    {"Panacotta", 20000, 10},
-    {"Pancake Lotus Ice Cream", 40000, 10},
-    {"Trio Ice Cream", 30000, 10}
+    {1, "Burnt Cheesecake", 35000, 10},
+    {2, "Choco Lava", 25000, 10},
+    {3, "Panacotta", 20000, 10},
+    {4, "Pancake Lotus Ice Cream", 40000, 10},
+    {5, "Trio Ice Cream", 30000, 10}
 };
 
 // FUCNTION
@@ -46,7 +60,7 @@ void tampilMenu(struct Menu menu[], int jumlah, char judul[]) {
 
     for (int i = 0; i < jumlah; i++) {
         printf("%-4d | %-25s | %-11d | %-5d\n",
-               i + 1,
+               menu[i].id,
                menu[i].nama,
                menu[i].harga,
                menu[i].stok);
@@ -64,8 +78,6 @@ void clear_stdin(){
 	}
 }
 
-// void meja(int *invalid, int *ok){
-// }
 
 void MenuUtama(){
 	printf("Silahkan Pilih Jenis Menu yang Anda Ingin Pesan\n");
@@ -73,7 +85,8 @@ void MenuUtama(){
     printf("2. Main Course\n");
     printf("3. Beverages\n");
     printf("4. Dessert\n");
-    printf("5. Bayar\n");
+    printf("5. Pembayaran\n");
+    printf("6. Exit\n");
     printf("Choose : ");
 }
 
@@ -86,32 +99,49 @@ void Display() {
     printf("      Selamat Datang di Trouville\n");
     printf("==========================================\n");
 
-    printf("Nama          : \n");
-    scanf("%s", nama);
+    printf("Nama          : ");
+    scanf(" %[^\n]", nama);
 
-    printf("Email         : \n");
-    scanf("%s", email);
+    printf("Email         : ");
+    scanf(" %[^\n]", email);
 
-    printf("Jumlah Orang  : \n");
+    printf("Jumlah Orang  : ");
     scanf("%d", &people);
 
-    printf("No Meja       : \n");
+    printf("No Meja       : ");
     scanf("%d", &meja);
 
     printf("==========================================\n");
 }
 
 void orderMenu(struct Menu menu[], int jumlah){
-    int pilih, quantity[];
+    int pilih, quantity;
+
+    printf("Pilih angka 0 untuk kembali\n");
     printf("Masukkan No. pesanan: \n");
     scanf("%d", &pilih);
     
-    if(pilih < 1 || pilih > jumlah){
-        printf("Pilihan Tidak Valid!\n");
+    int idx = -1;              
+    for (int i = 0; i < 5; i++) {
+        if(menu[i].id == pilih){
+            idx = i;
+            break;
+        }
+    }
+
+if(idx == -1){
+    printf("Pilihan Invalid.\n");
+    return;
+}
+
+    if(pilih == -1){
+        printf("Pilihan Invalid!");
         return;
     }
 
-    int idx = pilih - 1;
+    if(pilih == 0){
+        return;
+    }
 
     printf("Jumlah yang pesanan %s: \n", menu[idx].nama);
     scanf("%d", &quantity);
@@ -120,25 +150,42 @@ void orderMenu(struct Menu menu[], int jumlah){
         printf("Jumlah pesanan harus lebih dari 0\n");
         return;
     }
+
     if(menu[idx].stok >= quantity){
         menu[idx].stok -= quantity;
+
+        strcpy(keranjang[keranjangCount].nama, menu[idx].nama);
+        keranjang[keranjangCount].quantity = quantity;
+        keranjang[keranjangCount].subtotal = quantity * menu[idx].harga;
+
+        totalPembayaran1 += keranjang[keranjangCount].subtotal;
+        keranjangCount++;
+
         printf("Pesanan anda berhasil\n");
     }else printf("Mohon maaf stok menu yang anda pilih sudah habis\n");
 
 
 }
 
-void bayar(struct Menu){
-    printf("==========================================\n");
-    printf("                   Payment\n")
-    printf("==========================================\n");
-    for (int i = 0; i < ; i++) {
-        printf("%-4d | %-25s | %-11d | %-5d\n",
-               i + 1,
-               menu[i].nama,
-               menu[i].harga,
-               quantity);
+void strukPembayaran(){
+    if(keranjangCount == 0){
+        printf("Belum ada pesanan\n");
     }
+    printf("=============================================================\n");
+    printf("                    TROUVILLE RESTAURANT\n");
+    printf("=============================================================\n");
+    printf("%-4s | %-20s | %-12s\n", "Item", "Quantity", "Subtotal");
+    printf("-------------------------------------------------------------\n");
+    for(int i = 0;i < keranjangCount;i++){
+        printf("%-4d | %-20s | %-11d | %-5d\n",
+               i+1,
+               keranjang[i].nama,
+               keranjang[i].quantity,
+               keranjang[i].subtotal);
+    }
+    printf("-------------------------------------------------------------\n");
+    printf("Total Pembayaran :  Rp%d\n", totalPembayaran1);
+    printf("-------------------------------------------------------------\n");
 }
 
 // MAIN
@@ -170,14 +217,17 @@ int main(){
                 orderMenu(dessert, 5);
                 break;
             case 5:
-
+                strukPembayaran();
                 break;
+            case 6:
+                printf("Terima Kasih!\n");
+                return 0;
             default:
                 printf("Pilihan tidak valid!\n");
 
 
         }
-    }while (pilihMenu != 5);
+    }while (pilihMenu != 6);
 
 
 
