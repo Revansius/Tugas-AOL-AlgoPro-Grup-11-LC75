@@ -152,7 +152,8 @@ void Display() {
     printf("      Selamat Datang di Trouville\n");
     printf("==========================================\n");
 
-    
+    printf("Nama          : ");
+    scanf(" %[^\n]", nama);
 if(strcmp(nama, admin_username)== 0){
 printf("Password\n");
 scanf(" %[^\n]", password);
@@ -161,11 +162,11 @@ if(strcmp(password, admin_password)==0){
 printf("=======================\n");
 printf("Loggin Admin Berhasil\n");
 printf("=======================\n");
-
-
-printf("Nama          : ");
-    scanf(" %[^\n]", nama);
-
+isAdminloggin = 1;
+return;
+} else {  
+printf("Password Salah?  Anda Penyusup?\n");
+isAdminLoggin = 0;
     printf("Email         : ");
     scanf(" %[^\n]", email);
 
@@ -176,6 +177,26 @@ printf("Nama          : ");
     scanf("%d", &meja);
 
     printf("==========================================\n");
+} else {
+idAdminLoggin = 0;
+printf("Email         : ");
+    scanf(" %[^\n]", email);
+
+    printf("Jumlah Orang  : ");
+    scanf("%d", &people);
+
+    printf("No Meja       : ");
+    scanf("%d", &meja);
+
+    printf("==========================================\n");
+}
+
+void TampilkanMenuAdmin(){
+printf("====Menu Trouville====\n");
+tampilMenu(appetizer, 5, "APPETIZER");
+tampilMenu(mainCourse, 5, "MAIN COURSE");
+tampilMenu(beverages, 5, "BEVERAGES");
+tampilMenu(dessert, 5, "DESSERT");
 }
 
 void orderMenu(struct Menu menu[], int jumlah){
