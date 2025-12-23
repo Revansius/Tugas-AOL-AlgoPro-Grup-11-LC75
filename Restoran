@@ -26,7 +26,7 @@ struct KeranjangItem {
 struct KeranjangItem keranjang [50];
 int keranjangCount = 0;
 int totalPembayaran1 = 0;
-
+int isAdminLoggin = 0;
 
 struct Menu appetizer[5] = {
     {1, "Garlic Cheese Bread", 20000, 30},
@@ -121,14 +121,14 @@ void clear_stdin(){
 
 void menu_admin(){
 printf("\n===Menu Admin===\n");
-printf("1. Tampilkan Menu\n);
-printf("2. Update Stock"\n);
+printf("1. Tampilkan Menu\n");
+printf("2. Update Stock\n");
 printf("3. Tambah Menu Baru\n");
 printf("4. Hapus Menu\n");
 printf("5. Riwayat Transaksi\n");
 printf("6. Logout Admin\n");
 printf("7. Logout Program\n");
-printf("8. Tambahkan Admin\n")
+printf("8. Tambahkan Admin\n");
 printf("Pilih: ");
 }
 
@@ -147,6 +147,7 @@ void MenuUtama(){
 void Display() {
     char nama[50], email[50];
     int people, meja;
+	char password[50];
 
     printf("==========================================\n");
     printf("      Selamat Datang di Trouville\n");
@@ -162,7 +163,7 @@ if(strcmp(password, admin_password)==0){
 printf("=======================\n");
 printf("Loggin Admin Berhasil\n");
 printf("=======================\n");
-isAdminloggin = 1;
+isAdminLoggin = 1;
 return;
 } else {  
 printf("Password Salah?  Anda Penyusup?\n");
@@ -177,8 +178,9 @@ isAdminLoggin = 0;
     scanf("%d", &meja);
 
     printf("==========================================\n");
+}
 } else {
-idAdminLoggin = 0;
+isAdminLoggin = 0;
 printf("Email         : ");
     scanf(" %[^\n]", email);
 
@@ -231,11 +233,11 @@ case 4:
 menuDipilih = dessert;
 strcpy(namaKategori, "Dessert");
 break;
-deefault: 
+default: 
 printf("Menu tidak valid\n");
 return;
 }
-tampilMenu("menuDipilih, 5,namaKategori");
+tampilMenu(menuDipilih, 5,namaKategori);
 
 printf("Masukkan menu yang akan diupdate: ");
 scanf("%d", &id");
@@ -245,16 +247,16 @@ printf("Menu tidak Valid!\n");
 return;
 }
 
-printf("Stock saat ini: %d", menuDipilih[id-1].stock);
+printf("Stock saat ini: %d", menuDipilih[id-1].stok);
 printf("Masukkan Stock Baru: ");
-scanf("%d", &stockBaru);
+scanf("%d", &stokBaru);
 
 if(stockBaru < 0){
 printf("Input harus positif!\n");
 return;
 }
 
-menuDipilih[id-1].stock = stockBaru;
+menuDipilih[id-1].stok = stokBaru;
 simpanStockFile();
 printf("Stock sudah diupdate\n");
 }
