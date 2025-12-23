@@ -199,6 +199,66 @@ tampilMenu(beverages, 5, "BEVERAGES");
 tampilMenu(dessert, 5, "DESSERT");
 }
 
+void UpdateStock(){
+int kategori, id, stockbaru;
+
+printf("\n====Update Stock Menu===\n");
+printf("Pilih Kategori:\n);
+printf("1. Appertizer\n");
+printf("2. Main Course\n");
+printf("3. Beverage\n");
+printf("4. Dessert\n");
+printf("Pilih: ");
+scanf("%d", &kategori);
+
+struct Menu *menuDipilih;
+char namaKategori[20];
+
+switch {kategori){
+case 1:
+menuDipilih = appetizer;
+strcpy(namaKategori, "Appetizer");
+break;
+case 2;
+menuDipilih = mainCourse;
+strcpy(namaKategori, "Main Course");
+break;
+case 3;
+menuDipilih = beverage;
+strcpy(namaKategori, "Beverage");
+break;
+case 4:
+menuDipilih = dessert;
+strcpy(namaKategori, "Dessert");
+break;
+deefault: 
+printf("Menu tidak valid\n");
+return;
+}
+tampilMenu("menuDipilih, 5,namaKategori");
+
+printf("Masukkan menu yang akan diupdate: ");
+scanf("%d", &id");
+
+if(id < 1 || id > 5){
+printf("Menu tidak Valid!\n");
+return;
+}
+
+printf("Stock saat ini: %d", menuDipilih[id-1].stock);
+printf("Masukkan Stock Baru: ");
+scanf("%d", &stockBaru);
+
+if(stockBaru < 0){
+printf("Input harus positif!\n");
+return;
+}
+
+menuDipilih[id-1].stock = stockBaru;
+simpanStockFile();
+printf("Stock sudah diupdate\n");
+}
+
 void orderMenu(struct Menu menu[], int jumlah){
     int pilih, quantity;
 
