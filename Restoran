@@ -112,6 +112,17 @@ void clear_stdin(){
 	}
 }
 
+void menu_admin(){
+printf("\n===Menu Admin===\n");
+printf("1. Tampilkan Menu);
+printf("2. Update Stock");
+printf("3. Tambah Menu Baru");
+printf("4. Hapus Menu");
+printf("5. Riwayat Transaksi");
+printf("6. Logout Admin");
+printf("7. Logout Program");
+printf("Pilih: ");
+}
 
 void MenuUtama(){
 	printf("Silahkan Pilih Jenis Menu yang Anda Ingin Pesan\n");
