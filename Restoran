@@ -112,7 +112,10 @@ void clear_stdin(){
 	}
 }
 
-
+void menu_admin(){
+printf("\n===Menu Admin===\n);
+printf("1. Tampilkan semua menu\n);
+printf("2. Update Stock Menu");
 void MenuUtama(){
 	printf("Silahkan Pilih Jenis Menu yang Anda Ingin Pesan\n");
     printf("1. Appetizer\n");
