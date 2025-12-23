@@ -54,6 +54,40 @@ struct Menu dessert[5] = {
 };
 
 // FUCNTION
+void simpanStokKeFile() {
+    FILE *fp = fopen("stock.txt", "w");
+    if (fp == NULL) {
+        printf("Gagal membuka file untuk menyimpan stok!\n");
+        return;
+    }
+    
+    struct Menu *semuaMenu[] = {appetizer, mainCourse, beverages, dessert};
+    for (int i = 0; i < 4; i++) {
+        for (int j = 0; j < 5; j++) {
+            fprintf(fp, "%d\n", semuaMenu[i][j].stok);
+        }
+    }
+    fclose(fp);
+}
+
+void muatStokDariFile() {
+    FILE *fp = fopen("stock.txt", "r");
+    if (fp == NULL) {
+        simpanStokKeFile();
+        return;
+    }
+
+    struct Menu *semuaMenu[] = {appetizer, mainCourse, beverages, dessert};
+    for (int i = 0; i < 4; i++) {
+        for (int j = 0; j < 5; j++) {
+            if (fscanf(fp, "%d", &semuaMenu[i][j].stok) == EOF) break;
+        }
+    }
+    fclose(fp);
+}
+
+
+
 void tampilMenu(struct Menu menu[], int jumlah, char judul[]) {
     printf("\n== %s ==\n", judul);
     printf("-------------------------------------------------------------\n");
@@ -121,25 +155,18 @@ void orderMenu(struct Menu menu[], int jumlah){
     printf("Masukkan No. pesanan: \n");
     scanf("%d", &pilih);
     
-    int idx = -1;              
-    for (int i = 0; i < 5; i++) {
+    if(pilih == 0) return;
+
+    int idx = -1;
+    for (int i = 0; i < jumlah; i++) {
         if(menu[i].id == pilih){
             idx = i;
             break;
         }
     }
 
-if(idx == -1){
-    printf("Pilihan Invalid.\n");
-    return;
-}
-
-    if(pilih == -1){
-        printf("Pilihan Invalid!");
-        return;
-    }
-
-    if(pilih == 0){
+    if(idx == -1){
+        printf("Pilihan Invalid.\n");
         return;
     }
 
@@ -154,6 +181,8 @@ if(idx == -1){
     if(menu[idx].stok >= quantity){
         menu[idx].stok -= quantity;
 
+        simpanStokKeFile(); 
+
         strcpy(keranjang[keranjangCount].nama, menu[idx].nama);
         keranjang[keranjangCount].quantity = quantity;
         keranjang[keranjangCount].subtotal = quantity * menu[idx].harga;
@@ -162,9 +191,9 @@ if(idx == -1){
         keranjangCount++;
 
         printf("Pesanan anda berhasil\n");
-    }else printf("Mohon maaf stok menu yang anda pilih sudah habis\n");
-
-
+    } else {
+        printf("Mohon maaf stok menu yang anda pilih tidak mencukupi\n");
+    }
 }
 
 void strukPembayaran(){
@@ -190,8 +219,7 @@ void strukPembayaran(){
 
 // MAIN
 int main(){
-   
-    
+    muatStokDariFile();
     int pilihMenu;
     Display();
     do {
