@@ -324,7 +324,7 @@ int *count;
 
 switch(kategori){
 case 1: 
-menuDipilih = appertizer;
+menuDipilih = appetizer;
 strcpy(namaKategori, "Appetizer");
 count = &appetizerCount;
 break;
