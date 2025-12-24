@@ -127,8 +127,6 @@ printf("3. Tambah Menu Baru\n");
 printf("4. Hapus Menu\n");
 printf("5. Riwayat Transaksi\n");
 printf("6. Logout Admin\n");
-printf("7. Logout Program\n");
-printf("8. Tambahkan Admin\n");
 printf("Pilih: ");
 }
 
@@ -205,7 +203,7 @@ void UpdateStock(){
 int kategori, id, stockbaru;
 
 printf("\n====Update Stock Menu===\n");
-printf("Pilih Kategori:\n);
+printf("Pilih Kategori:\n");
 printf("1. Appertizer\n");
 printf("2. Main Course\n");
 printf("3. Beverage\n");
@@ -216,7 +214,7 @@ scanf("%d", &kategori);
 struct Menu *menuDipilih;
 char namaKategori[20];
 
-switch {kategori){
+switch ( kategori){
 case 1:
 menuDipilih = appetizer;
 strcpy(namaKategori, "Appetizer");
@@ -307,6 +305,79 @@ void orderMenu(struct Menu menu[], int jumlah){
     } else {
         printf("Mohon maaf stok menu yang anda pilih tidak mencukupi\n");
     }
+}
+
+void hapusmenu(){
+int kategori, id;
+
+printf("\n===Pilih Menu yang akan dihapus===\n");
+printf("1. Appetizer\n");
+printf("2. Main Course\n");
+printf("3. beverages\n");
+printf("4. Dessert\n");
+printf("Pilih: ");
+scanf("%d", &kategori");
+
+struct Menu*menuDipilih;
+char namaKategori[20];
+int *count;
+
+switch (kategori){
+case 1:
+menuDipilih = appetizer;
+strcpy(namaKategori, "Appetizer");
+count = &appetizerCount;
+break;
+case 2:
+menuDipilih = main course;
+strcpy(namaKategori, "Main Course");
+count = &maiCourseCount;
+break;
+case 3:
+menuDipilih = beverages;
+strcpy(namaKategori, "Beverages");
+break;
+case 4:
+menuDipilih = dessert;
+strcpy(namaKategori, "Dessert");
+break;
+default: 
+printf("kategori tidak valid\n");
+return;
+}
+if(count == 0){
+printf("Kategori %s kosong!Tidak ada menu yang bisa dihapus!\n");
+return;
+}
+scanf("%d", &id");
+tampilMenu(menuDipilih, *count, namaKategori);
+printf("Masukkan ID menu yang akan dihapus: ");
+scanf("%d", &id);
+if(id < 1 || id > *count){
+printf("ID tidak valid");
+return;
+}
+
+printf("\nMenu yang akan dihapus: ");
+printf("Nama :%s\n", menuDipilih[id-1].nama);
+printf("Harga :Rp%d\n", menuDipilih[id=1].harga);
+printf("Stock :%d\n", menuDipilih[id=1].stock);
+
+char konfirmasi;
+printf("Yakin ingin menghapus menu ini? (y/n): ");
+clearInputBuffer();
+scanf("%c", &konfirmasi);
+
+if(konfirmasi == 'y' || konfirmasi == 'Y'){
+for (int i = id-1; i < *count - 1;i++){
+menuDipilih[i] = menuDipilih[i+1];
+menuDipilih[i].id = i + 1;
+}
+(*count)--;
+simpanStockFile();
+printf("mneu berhasil dihapus\n");
+}else {
+printf("Penghapusan dibatalkan\n");
 }
 
 void riwayattransaksi(){
