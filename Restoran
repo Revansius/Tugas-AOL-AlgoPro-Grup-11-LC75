@@ -309,6 +309,21 @@ void orderMenu(struct Menu menu[], int jumlah){
     }
 }
 
+void riwayattransaksi(){
+printf("\n===Lihat riwayat transaksi===\n");
+File *fp= fopen("transaksi.txt", "r");
+if(fp == NULL){
+printf("belum ada riwayat transaksi.\n");
+return;
+}
+char buffer[300];
+while (fgets (buffer, sizeof(buffer), fp){
+printf("%s", &buffer);
+} else {
+fclose(fp);
+}
+
+
 void strukPembayaran(){
     if(keranjangCount == 0){
         printf("Belum ada pesanan\n");
