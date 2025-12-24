@@ -28,7 +28,7 @@ int keranjangCount = 0;
 int totalPembayaran1 = 0;
 int isAdminLoggin = 0;
 
-struct Menu appetizer[5] = {
+struct Menu appetizer[50] = {
     {1, "Garlic Cheese Bread", 20000, 30},
     {2, "French Fries", 20000, 30},
     {3, "Chicken Wing", 27000, 30},
@@ -36,7 +36,7 @@ struct Menu appetizer[5] = {
     {5, "Salad", 15000, 30}
 };
 
-struct Menu mainCourse[5] = {
+struct Menu mainCourse[50] = {
     {1, "Nasi Goreng", 50000, 10},
     {2, "Salted Egg Chicken", 65000, 10},
     {3, "Spaghetti Carbonara", 70000, 10},
@@ -44,7 +44,7 @@ struct Menu mainCourse[5] = {
     {5, "Chicken Katsu Curry", 80000, 10}
 };
 
-struct Menu beverages[5] = {
+struct Menu beverages[50] = {
     {1, "Avochoco", 35000, 10},
     {2, "Lychee Tea", 25000, 10},
     {3, "Lemon Cocktail", 50000, 10},
@@ -52,7 +52,7 @@ struct Menu beverages[5] = {
     {5, "Chocolate", 30000, 10}
 };
 
-struct Menu dessert[5] = {
+struct Menu dessert[50] = {
     {1, "Burnt Cheesecake", 35000, 10},
     {2, "Choco Lava", 25000, 10},
     {3, "Panacotta", 20000, 10},
@@ -199,7 +199,7 @@ tampilMenu(beverages, 5, "BEVERAGES");
 tampilMenu(dessert, 5, "DESSERT");
 }
 
-void UpdateStock(){
+	void UpdateStock(){
 int kategori, id, stockbaru;
 
 printf("\n====Update Stock Menu===\n");
@@ -307,7 +307,67 @@ void orderMenu(struct Menu menu[], int jumlah){
     }
 }
 
-void hapusmenu(){
+	void tambahmenu(){
+int kategori;
+printf("\n===Tambah Menu Baru===\n");
+printf("Pilih kategori\n");
+printf("1. Appertizer\n");
+printf("2. Main COurse\n");
+printf("3. Beverages\n");
+printf("4. Dessert\n");
+printf("Pilih: ");
+scanf("%d", kategori);
+
+struct Menu * menuDipilih;
+char namaKategori[20];
+int *count;
+
+switch(kategori){
+case 1: 
+menuDipilih = appertizer;
+strcpy(namaKategori, "Appetizer");
+count = &appetizerCount;
+break;
+case 2:
+menuDipilih = main course;
+strcpy(namaKategori. "Main Course");
+count = &mainCourseCount;
+break;
+case 3:
+menuDipilih = beverages;
+strcpy(namaKategori, "Beverages");
+count = &beveragesCount;
+break;
+case 4:
+menuDipilih = dessert;
+strcpy(namaKategori, "Dessert");
+count = &dessertCount;
+break;
+default:
+printf("Kategori tidak valid\n");
+return;
+}
+
+printf("\nMasukkan Menu Baru:\n");
+
+printf("Nama Menu: ");
+clearInputBuffer();
+scanf("%[^\n]", menuDipilih[*count].nama);
+printf("Harga Awal: ");
+scanf("%d", &menuDipilih[*count].harga);
+printf("Stock Awal: ");
+scanf("%d", &menuDipilih[*count].stok);
+
+(*count)++;
+simpanStockKeFile();
+return;
+printf("Menu sudah berhasil ditambahkan  ke kategori %s\n", namaKategori);
+}
+
+
+
+
+	void hapusmenu(){
 int kategori, id;
 
 printf("\n===Pilih Menu yang akan dihapus===\n");
@@ -380,7 +440,7 @@ printf("mneu berhasil dihapus\n");
 printf("Penghapusan dibatalkan\n");
 }
 
-void riwayattransaksi(){
+	void riwayattransaksi(){
 printf("\n===Lihat riwayat transaksi===\n");
 File *fp= fopen("transaksi.txt", "r");
 if(fp == NULL){
@@ -394,6 +454,7 @@ printf("%s", &buffer);
 fclose(fp);
 }
 
+	
 
 void strukPembayaran(){
     if(keranjangCount == 0){
@@ -421,9 +482,48 @@ int main(){
     muatStokDariFile();
     int pilihMenu;
     Display();
+ if (isadminLoggin){
     do {
-        
-        MenuUtama();
+         menu_admin();
+scanf("%d", &pilihMenu)
+        scanf("%d", &pilihMenu);
+     clearInputBuffer();
+      
+	switch(pilihMenu){
+case 1:
+TampilkanMenuAdmin();
+break;
+case 2:
+UpdateStock();
+break;
+case 3:
+tambahmenu();
+break;
+case 4:
+hapusmenu();
+break;
+case 5:
+riwayattransaksi();
+break;
+case 6:
+printf("Kembali ke mode costumer\n");
+isAdminLoggin = 0;
+Display();
+break;
+case 7:
+return 0;
+default:
+printf("Tidak valid\n");
+}
+}while (pilihMenu != 6); 
+return 0;
+}
+
+
+
+
+
+  MenuUtama();
         scanf("%d", &pilihMenu);
 
         switch(pilihMenu){
