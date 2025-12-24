@@ -219,12 +219,12 @@ case 1:
 menuDipilih = appetizer;
 strcpy(namaKategori, "Appetizer");
 break;
-case 2;
+case 2:
 menuDipilih = mainCourse;
 strcpy(namaKategori, "Main Course");
 break;
-case 3;
-menuDipilih = beverage;
+case 3:
+menuDipilih = beverages;
 strcpy(namaKategori, "Beverage");
 break;
 case 4:
@@ -238,7 +238,7 @@ return;
 tampilMenu(menuDipilih, 5,namaKategori);
 
 printf("Masukkan menu yang akan diupdate: ");
-scanf("%d", &id");
+scanf("%d", &id);
 
 if(id < 1 || id > 5){
 printf("Menu tidak Valid!\n");
@@ -247,14 +247,14 @@ return;
 
 printf("Stock saat ini: %d", menuDipilih[id-1].stok);
 printf("Masukkan Stock Baru: ");
-scanf("%d", &stokBaru);
+scanf("%d", &stockbaru);
 
-if(stockBaru < 0){
+if(stockbaru < 0){
 printf("Input harus positif!\n");
 return;
 }
 
-menuDipilih[id-1].stok = stokBaru;
+menuDipilih[id-1].stok = stockbaru;
 simpanStockFile();
 printf("Stock sudah diupdate\n");
 }
@@ -316,7 +316,7 @@ printf("2. Main Course\n");
 printf("3. beverages\n");
 printf("4. Dessert\n");
 printf("Pilih: ");
-scanf("%d", &kategori");
+scanf("%d", &kategori);
 
 struct Menu*menuDipilih;
 char namaKategori[20];
@@ -331,7 +331,7 @@ break;
 case 2:
 menuDipilih = main course;
 strcpy(namaKategori, "Main Course");
-count = &maiCourseCount;
+count = &mainCourseCount;
 break;
 case 3:
 menuDipilih = beverages;
