@@ -195,10 +195,10 @@ printf("Email         : ");
 
 void TampilkanMenuAdmin(){
 printf("====Menu Trouville====\n");
-tampilMenu(appetizer, 5, "APPETIZER");
-tampilMenu(mainCourse, 5, "MAIN COURSE");
-tampilMenu(beverages, 5, "BEVERAGES");
-tampilMenu(dessert, 5, "DESSERT");
+tampilMenu(appetizer, appetizerCount, "APPETIZER");
+tampilMenu(mainCourse, mainCourseCount, "MAIN COURSE");
+tampilMenu(beverages, beveragesCount, "BEVERAGES");
+tampilMenu(dessert, dessertCount, "DESSERT");
 }
 
 	void UpdateStock(){
