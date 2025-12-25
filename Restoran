@@ -423,7 +423,7 @@ return;
 printf("\nMenu yang akan dihapus: ");
 printf("Nama :%s\n", menuDipilih[id-1].nama);
 printf("Harga :Rp%d\n", menuDipilih[id-1].harga);
-printf("Stock :%d\n", menuDipilih[id-1].stock);
+printf("Stock :%d\n", menuDipilih[id-1].stok);
 
 char konfirmasi;
 printf("Yakin ingin menghapus menu ini? (y/n): ");
@@ -436,7 +436,7 @@ menuDipilih[i] = menuDipilih[i+1];
 menuDipilih[i].id = i + 1;
 }
 (*count)--;
-simpanStockFile();
+simpanStockKeFile();
 printf("mneu berhasil dihapus\n");
 }else {
 printf("Penghapusan dibatalkan\n");
@@ -605,7 +605,7 @@ int main(){
  if (isAdminLoggin){
     do {
          menu_admin();
-scanf("%d", &pilihMenu)
+scanf("%d", &pilihMenu);
 clearInputBuffer();
       
 	switch(pilihMenu){
@@ -647,20 +647,20 @@ return 0;
 
         switch(pilihMenu){
             case 1: 
-                tampilMenu(appetizer, 5, "APPETIZER");
-                orderMenu(appetizer, 5);
+                tampilMenu(appetizer, appetizerCount, "APPETIZER");
+                orderMenu(appetizer, &appetizerCount);
                 break;
             case 2:
-                tampilMenu(mainCourse, 5, "MAIN COURSE");
-                orderMenu(mainCourse, 5);
+                tampilMenu(mainCourse, mainCourse, "MAIN COURSE");
+                orderMenu(mainCourse, &mainCourseCount);
                 break;
             case 3:
-                tampilMenu(beverages, 5, "BEVERAGES");
-                orderMenu(beverages, 5);
+                tampilMenu(beverages, beveragesCount, "BEVERAGES");
+                orderMenu(beverages, &beveragesCount);
                 break;
             case 4:
-                tampilMenu(dessert, 5, "DESSERT");
-                orderMenu(dessert, 5);
+                tampilMenu(dessert, dessertCount, "DESSERT");
+                orderMenu(dessert, &dessertCount);
                 break;
             case 5:
                 strukPembayaran();
