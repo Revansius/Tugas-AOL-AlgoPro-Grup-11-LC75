@@ -18,7 +18,7 @@ struct Menu {
 };
 
 struct KeranjangItem {
-    char nama[39];
+    char nama[50];
     int quantity;
     int subtotal;
 };
@@ -35,6 +35,7 @@ struct Menu appetizer[50] = {
     {4, "Oyster", 35000, 30},
     {5, "Salad", 15000, 30}
 };
+int appetizerCount = 5;
 
 struct Menu mainCourse[50] = {
     {1, "Nasi Goreng", 50000, 10},
@@ -43,6 +44,7 @@ struct Menu mainCourse[50] = {
     {4, "Beef Steak", 105000, 10},
     {5, "Chicken Katsu Curry", 80000, 10}
 };
+int mainCourseCount = 5;
 
 struct Menu beverages[50] = {
     {1, "Avochoco", 35000, 10},
@@ -51,6 +53,7 @@ struct Menu beverages[50] = {
     {4, "Biscoff Espresso", 45000, 10},
     {5, "Chocolate", 30000, 10}
 };
+int beveragesCount = 5;
 
 struct Menu dessert[50] = {
     {1, "Burnt Cheesecake", 35000, 10},
@@ -59,6 +62,7 @@ struct Menu dessert[50] = {
     {4, "Pancake Lotus Ice Cream", 40000, 10},
     {5, "Trio Ice Cream", 30000, 10}
 };
+int dessertCount = 5;
 
 // FUCNTION
 void simpanStokKeFile() {
@@ -112,11 +116,9 @@ void tampilMenu(struct Menu menu[], int jumlah, char judul[]) {
 }
 
 
-void clear_stdin(){
+void clearInputBuffer(){
     int c;
-    while ((c == getchar()) != '\n' && c != EOF){
-
-	}
+    while ((c = getchar()) != '\n' && c != EOF);
 }
 
 void menu_admin(){
@@ -164,7 +166,7 @@ printf("=======================\n");
 isAdminLoggin = 1;
 return;
 } else {  
-printf("Password Salah?  Anda Penyusup?\n");
+printf("Password Salah!  Anda Penyusup?\n");
 isAdminLoggin = 0;
     printf("Email         : ");
     scanf(" %[^\n]", email);
