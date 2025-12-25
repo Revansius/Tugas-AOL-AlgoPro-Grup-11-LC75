@@ -331,8 +331,8 @@ strcpy(namaKategori, "Appetizer");
 count = &appetizerCount;
 break;
 case 2:
-menuDipilih = main course;
-strcpy(namaKategori. "Main Course");
+menuDipilih = mainCourse;
+strcpy(namaKategori, "Main Course");
 count = &mainCourseCount;
 break;
 case 3:
@@ -391,7 +391,7 @@ strcpy(namaKategori, "Appetizer");
 count = &appetizerCount;
 break;
 case 2:
-menuDipilih = main course;
+menuDipilih = mainCourse;
 strcpy(namaKategori, "Main Course");
 count = &mainCourseCount;
 break;
@@ -411,7 +411,7 @@ if(count == 0){
 printf("Kategori %s kosong!Tidak ada menu yang bisa dihapus!\n");
 return;
 }
-scanf("%d", &id");
+scanf("%d", &id);
 tampilMenu(menuDipilih, *count, namaKategori);
 printf("Masukkan ID menu yang akan dihapus: ");
 scanf("%d", &id);
@@ -422,8 +422,8 @@ return;
 
 printf("\nMenu yang akan dihapus: ");
 printf("Nama :%s\n", menuDipilih[id-1].nama);
-printf("Harga :Rp%d\n", menuDipilih[id=1].harga);
-printf("Stock :%d\n", menuDipilih[id=1].stock);
+printf("Harga :Rp%d\n", menuDipilih[id-1].harga);
+printf("Stock :%d\n", menuDipilih[id-1].stock);
 
 char konfirmasi;
 printf("Yakin ingin menghapus menu ini? (y/n): ");
@@ -602,12 +602,11 @@ int main(){
     muatStokDariFile();
     int pilihMenu;
     Display();
- if (isadminLoggin){
+ if (isAdminLoggin){
     do {
          menu_admin();
 scanf("%d", &pilihMenu)
-        scanf("%d", &pilihMenu);
-     clearInputBuffer();
+clearInputBuffer();
       
 	switch(pilihMenu){
 case 1:
