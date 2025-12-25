@@ -584,15 +584,27 @@ printf("Pilihan tidak valid!\n");
 void strukPembayaran(){
     if(keranjangCount == 0){
         printf("Belum ada pesanan\n");
+        return;
+    }
+
+    for (int i = 0; i < keranjangCount - 1; i++) {
+        for (int j = 0; j < keranjangCount - i - 1; j++) {
+            if (keranjang[j].subtotal < keranjang[j+1].subtotal) {
+                struct KeranjangItem temp = keranjang[j];
+                keranjang[j] = keranjang[j+1];
+                keranjang[j+1] = temp;
+            }
+        }
     }
     printf("=============================================================\n");
     printf("                    TROUVILLE RESTAURANT\n");
     printf("=============================================================\n");
-    printf("%-4s | %-20s | %-12s\n", "Item", "Quantity", "Subtotal");
+    printf("%-4s | %-20s | %-12s | %-12s\n", "No", "Item", "Quantity", "Subtotal");
     printf("-------------------------------------------------------------\n");
-    for(int i = 0;i < keranjangCount;i++){
-        printf("%-4d | %-20s | %-11d | %-10d\n",
-               i+1,
+    
+    for(int i = 0; i < keranjangCount; i++){
+        printf("%-4d | %-20s | %-11d | Rp%-11d\n",
+               i+1, 
                keranjang[i].nama,
                keranjang[i].quantity,
                keranjang[i].subtotal);
@@ -724,10 +736,5 @@ do{
         }
     }while (pilihMenu != 6);
 
-
-
-    
-    
-    
     return 0;
 }
