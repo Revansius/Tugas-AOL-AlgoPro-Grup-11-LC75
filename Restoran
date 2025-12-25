@@ -257,7 +257,7 @@ return;
 }
 
 menuDipilih[id-1].stok = stockbaru;
-simpanStockFile();
+simpanStockKeFile();
 printf("Stock sudah diupdate\n");
 }
 
@@ -314,7 +314,7 @@ int kategori;
 printf("\n===Tambah Menu Baru===\n");
 printf("Pilih kategori\n");
 printf("1. Appertizer\n");
-printf("2. Main COurse\n");
+printf("2. Main Course\n");
 printf("3. Beverages\n");
 printf("4. Dessert\n");
 printf("Pilih: ");
