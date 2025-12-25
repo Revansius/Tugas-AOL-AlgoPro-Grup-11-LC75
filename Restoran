@@ -258,7 +258,7 @@ return;
 }
 
 menuDipilih[id-1].stok = stockbaru;
-simpanStockKeFile();
+simpanStokKeFile();
 printf("Stock sudah diupdate\n");
 }
 
@@ -362,7 +362,7 @@ printf("Stock Awal: ");
 scanf("%d", &menuDipilih[*count].stok);
 
 (*count)++;
-simpanStockKeFile();
+simpanStokKeFile();
 return;
 printf("Menu sudah berhasil ditambahkan  ke kategori %s\n", namaKategori);
 }
@@ -437,7 +437,7 @@ menuDipilih[i] = menuDipilih[i+1];
 menuDipilih[i].id = i + 1;
 }
 (*count)--;
-simpanStockKeFile();
+simpanStokKeFile();
 printf("mneu berhasil dihapus\n");
 }else {
 printf("Penghapusan dibatalkan\n");
