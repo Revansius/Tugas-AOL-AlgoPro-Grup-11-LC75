@@ -442,21 +442,139 @@ printf("mneu berhasil dihapus\n");
 printf("Penghapusan dibatalkan\n");
 }
 
-	void riwayattransaksi(){
-printf("\n===Lihat riwayat transaksi===\n");
-File *fp= fopen("transaksi.txt", "r");
-if(fp == NULL){
-printf("belum ada riwayat transaksi.\n");
+void searchTransaksi(){
+int pilihan;
+char keyword[100];
+
+printf("\n===Cari Transaksi===\n");
+printf("1. Lihat Seluruh Transaksi\n");
+printf("2. Cari Berdasarkan Nama\n");
+printf("3. Cari Berdasarkan Meja\n"); 
+printf("4. Kembali ke Beranda\n");
+printf("Pilih: ");
+scanf("%d", &pilihan);
+clearInputBuffer();
+if(pilihan == 4) {
 return;
 }
-char buffer[300];
-while (fgets (buffer, sizeof(buffer), fp){
-printf("%s", &buffer);
-} else {
-fclose(fp);
+
+FILE *	fp = fopen("transaksi.txt", "r");
+if(fp == NULL){
+printf("Belum ada riwayat transaksi!");
+return;
 }
 
-	
+char buffer[500];
+int found = 0;
+int displayAll = (pilihan == 3);
+    
+if (pilihan == 1) {
+printf("Masukkan nama pelanggan: ");
+scanf(" %[^\n]", keyword);
+printf("\n=== HASIL PENCARIAN BERDASARKAN NAMA: %s ===\n", keyword);
+} else if (pilihan == 2) {
+printf("Masukkan no meja: ");
+scanf(" %[^\n]", keyword);
+printf("\n=== HASIL PENCARIAN BERDASARKAN NO MEJA: %s ===\n", keyword);
+} else if (pilihan == 3) {
+printf("\n=== SEMUA RIWAYAT TRANSAKSI ===\n");
+}
+    
+printf("============================================================\n");
+    
+while (fgets(buffer, sizeof(buffer), fp)) {
+      
+if (pilihan == 1) {
+if (strstr(buffer, "Nama Pelanggan:") != NULL) {
+char namaFile[100];
+sscanf(buffer, "Nama Pelanggan: %[^\n]", namaFile);
+                
+               
+char namaFileLower[100], keywordLower[100];
+strcpy(namaFileLower, namaFile);
+strcpy(keywordLower, keyword);
+                
+               
+for(int i = 0; namaFileLower[i]; i++) 
+namaFileLower[i] = tolower(namaFileLower[i]);
+for(int i = 0; keywordLower[i]; i++) 
+keywordLower[i] = tolower(keywordLower[i]);
+                
+if (strstr(namaFileLower, keywordLower) != NULL) {
+found = 1;
+fseek(fp, -strlen(buffer), SEEK_CUR);
+for(int i = 0; i < 12; i++) { 
+if (fgets(buffer, sizeof(buffer), fp)) {
+printf("%s", buffer);
+                    
+}
+}
+printf("\n");
+}
+}
+}
+      
+else if (pilihan == 2) {
+if (strstr(buffer, "No Meja:") != NULL) {
+int noMejaFile;
+sscanf(buffer, "No Meja: %d", &noMejaFile);
+                
+int keywordNo;
+if (sscanf(keyword, "%d", &keywordNo) == 1) {
+if (noMejaFile == keywordNo) {
+found = 1;
+fseek(fp, -strlen(buffer), SEEK_CUR);
+for(int i = 0; i < 12; i++) {
+if (fgets(buffer, sizeof(buffer), fp)) {
+printf("%s", buffer);
+}
+}
+printf("\n");
+}
+}
+}
+}
+else if (displayAll) {
+printf("%s", buffer);
+found = 1;
+}
+}
+    
+fclose(fp);
+    
+if (!found) {
+printf("\nTidak ditemukan transaksi dengan kriteria tersebut.\n");
+}
+    
+printf("============================================================\n");
+}
+
+	void riwayattransaksi() {
+    int pilihan;
+    
+    do {
+printf("\n=== RIWAYAT TRANSAKSI ===\n");
+printf("1. Lihat Semua Transaksi\n");
+printf("2. Cari Transaksi (Nama/No Meja)\n");
+printf("3. Kembali ke Menu Admin\n");
+printf("Pilih: ");
+scanf("%d", &pilihan);
+clearInputBuffer();
+        
+switch(pilihan) {
+case 1:
+searchTransaksi();
+case 2:
+searchTransaksi();
+break;
+case 3:
+return;
+default:
+printf("Pilihan tidak valid!\n");
+}
+} while (pilihan != 3);
+}
+
 
 void strukPembayaran(){
     if(keranjangCount == 0){
