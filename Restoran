@@ -101,6 +101,8 @@ void muatStokDariFile() {
 
 void tampilMenu(struct Menu menu[], int jumlah, char judul[]) {
     printf("\n== %s ==\n", judul);
+    printf("=============================================================\n");
+    printf("%-4s | %-25s | %-11s | %-5s\n", "ID", "Nama Menu", "Harga", "Stok");
     printf("-------------------------------------------------------------\n");
 
     for (int i = 0; i < jumlah; i++) {
@@ -600,6 +602,56 @@ void strukPembayaran(){
     printf("-------------------------------------------------------------\n");
 }
 
+//Sorting
+void hargaTerendah(struct Menu menu[], int jumlah){
+	struct Menu temp;
+	for(int i = 0;i < jumlah - 1;i++){
+		for(int j = 0;j < jumlah - 1 - i;j++){
+			if(menu[j].harga > menu[j + 1].harga){
+				temp = menu[j];
+				menu[j] = menu[j + 1];
+				menu[j + 1] = temp;
+			}
+		}
+	}
+	printf("\nMenu telah diurutkan dari harga terendah -> tertinggi\n");
+}
+
+void hargaTertinggi(struct Menu menu[], int jumlah){
+	struct Menu temp;
+	for(int i = 0;i < jumlah - 1;i++){
+		for(int j = 0;j < jumlah - 1 - i;j++){
+			if(menu[j].harga < menu[j + 1].harga){
+				temp = menu[j];
+				menu[j] = menu[j + 1];
+				menu[j + 1] = temp;
+			}
+		}
+	}
+	printf("\nMenu telah diurutkan dari harga tertinggi -> terendah\n");
+}
+
+void menuKategori(struct Menu menu[], int jumlah, char judul[]) {
+    int pilihanSort;
+    printf("\nFormat Tampilan %s:\n", judul);
+    printf("1. Tampilkan Default \n");
+    printf("2. Urutkan Berdasarkan Harga Terendah\n");
+    printf("3. Urutkan Berdasarkan Harga Tertinggi\n");
+    printf("Pilih format: ");
+    scanf("%d", &pilihanSort);
+
+    if (pilihanSort == 2) {
+        hargaTerendah(menu, jumlah);
+        tampilMenu(menu, jumlah, judul);
+    } else if(pilihanSort == 3){
+    	hargaTertinggi(menu, jumlah);
+    	tampilMenu(menu, jumlah, judul);
+	} else {
+        tampilMenu(menu, jumlah, judul);
+    }
+    orderMenu(menu, jumlah);
+}
+
 // MAIN
 int main(){
     muatStokDariFile();
@@ -648,20 +700,16 @@ do{
 
         switch(pilihMenu){
             case 1: 
-                tampilMenu(appetizer, appetizerCount, "APPETIZER");
-                orderMenu(appetizer, &appetizerCount);
+                menuKategori(appetizer, appetizerCount, "APPETIZER");
                 break;
             case 2:
-                tampilMenu(mainCourse, mainCourse, "MAIN COURSE");
-                orderMenu(mainCourse, &mainCourseCount);
+                menuKategori(mainCourse, mainCourseCount, "MAIN COURSE");
                 break;
             case 3:
-                tampilMenu(beverages, beveragesCount, "BEVERAGES");
-                orderMenu(beverages, &beveragesCount);
+                menuKategori(beverages, beveragesCount, "BEVERAGES");
                 break;
             case 4:
-                tampilMenu(dessert, dessertCount, "DESSERT");
-                orderMenu(dessert, &dessertCount);
+                menuKategori(dessert, dessertCount, "DESSERT");
                 break;
             case 5:
                 strukPembayaran();
@@ -683,48 +731,3 @@ do{
     
     return 0;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//muak banyak eror
