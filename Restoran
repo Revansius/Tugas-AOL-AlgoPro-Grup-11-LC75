@@ -156,7 +156,7 @@ void Display() {
     printf("Nama          : ");
     scanf(" %[^\n]", nama);
 if(strcmp(nama, admin_username)== 0){
-printf("Password\n");
+printf("Password: ");
 scanf(" %[^\n]", password);
 
 if(strcmp(password, admin_password)==0){
