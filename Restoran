@@ -615,6 +615,19 @@ void strukPembayaran(){
 }
 
 //Sorting
+void urutkanBerdasarkanID(struct Menu menu[], int jumlah){
+    struct Menu temp;
+    for(int i = 0; i < jumlah - 1; i++){
+        for(int j = 0; j < jumlah - 1 - i; j++){
+            if(menu[j].id > menu[j + 1].id){
+                temp = menu[j];
+                menu[j] = menu[j + 1];
+                menu[j + 1] = temp;
+            }
+        }
+    }
+}
+
 void hargaTerendah(struct Menu menu[], int jumlah){
 	struct Menu temp;
 	for(int i = 0;i < jumlah - 1;i++){
@@ -659,6 +672,7 @@ void menuKategori(struct Menu menu[], int jumlah, char judul[]) {
     	hargaTertinggi(menu, jumlah);
     	tampilMenu(menu, jumlah, judul);
 	} else {
+        urutkanBerdasarkanID(menu, jumlah);
         tampilMenu(menu, jumlah, judul);
     }
     orderMenu(menu, jumlah);
