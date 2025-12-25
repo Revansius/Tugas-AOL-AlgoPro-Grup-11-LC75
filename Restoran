@@ -739,6 +739,7 @@ do{
                 break;
             case 5:
                 strukPembayaran();
+				return 0;
                 break;
             case 6:
                 printf("Terima Kasih!\n");
